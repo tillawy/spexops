@@ -1,0 +1,81 @@
+{
+  "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.11.0/.schema/devbox.schema.json",
+  "env": {
+    "PGPORT": "5432",
+    "PGHOST": "/tmp/",
+    "REDIS_PORT": "6379",
+    "DATABASE_URL": "postgresql://localhost:5432"
+  },
+  "packages": {
+    "glibcLocales": {
+      "version":   "latest",
+      "platforms": ["aarch64-linux"]
+    },
+    "yq": "latest",
+    "libyaml": {
+      "version": "latest",
+      "outputs": [
+        "out",
+        "dev"
+      ]
+    },
+    "postgresql_16": {
+      "version": "latest"
+    },
+    "go-task": "latest",
+    "ruby": "3.3.1",
+    "git": "latest",
+    "gcc": "latest"
+  },
+  "shell": {
+    "init_hook": [
+      "echo 'Welcome to SpexOps-Backend/DevBox!' > /dev/null",
+      "devbox run copy_pg_conf",
+      "devbox run patch_pg_service"
+    ],
+    "scripts": {
+      "test": [
+        "echo \"Error: no test specified\" && exit 1"
+      ],
+      "copy_pg_conf": [
+        "cp devbox.d/postgresql_16/postgresql.conf  .devbox/virtenv/postgresql_16/data/"
+      ],
+      "patch_pg_service": [
+        "yq --yaml-output --in-place '.processes.postgresql.command = \"pg_ctl start -o \\\"-k /tmp/ -p $PGPORT  \\\"\"' .devbox/virtenv/postgresql_16/process-compose.yaml"
+      ],
+      "install_pg_vector": [
+        "echo 'Installing pg_vector extension'",
+        "cd /tmp",
+        "git clone --branch v0.7.1 https://github.com/pgvector/pgvector.git",
+        "cd ./pgvector",
+        "make",
+        "make install",
+        "cd /tmp",
+        "rm -rf /tmp/pgvector"
+      ],
+      "install_pg_cron": [
+        "echo 'Installing pg_cron extension'",
+        "cd /tmp",
+        "rm -rf ./pg_cron",
+        "git clone https://github.com/citusdata/pg_cron.git",
+        "cd ./pg_cron",
+        "make CC=gcc",
+        "make install",
+        "cd /tmp",
+        "rm -rf /tmp/pg_cron"
+      ],
+      "install_pg_hint": [
+        "echo 'Installing pg_hint extension'",
+        "cd /tmp",
+        "wget https://github.com/ossc-db/pg_hint_plan/archive/refs/tags/REL16_1_6_0.tar.gz",
+        "tar xzvf ./REL16_1_6_0.tar.gz",
+        "cd ./pg_hint_plan-REL16_1_6_0",
+        "make",
+        "make install",
+        "cd /tmp",
+        "rm -rf ./pg_hint_plan-REL16_1_6_0"
+      ]
+    }
+  }
+}
+
