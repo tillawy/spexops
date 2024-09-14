@@ -23,7 +23,7 @@
       "version": "latest"
     },
     "go-task": "latest",
-    "ruby": "3.3.1",
+    "ruby": "3.3.4",
     "git": "latest",
     "gcc": "latest"
   },

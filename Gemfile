@@ -57,3 +57,16 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "rls_rails", github: "sbiastoch/rls_rails", branch: "master"
+gem "omniauth"
+gem "omniauth-rails_csrf_protection"
+gem "omniauth-keycloak"
+gem "rails_keycloak_authorization"
+gem "paper_trail"
+
+gem "prometheus_exporter"
+
+gem "graphql"
+gem "rails-pg-extras"
+gem "discard", "~> 1.2"
