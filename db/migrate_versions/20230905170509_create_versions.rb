@@ -6,6 +6,10 @@ class CreateVersions < ActiveRecord::Migration[7.0]
       t.string :item_type, null: false
       t.string :item_id, null: false
       t.string :event, null: false
+      t.string :transaction_id
+      t.string :request_id
+      t.string :ip_address
+      t.string :user_agent
       t.string :whodunnit
       t.jsonb :object
       t.jsonb :object_changes
