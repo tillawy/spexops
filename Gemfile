@@ -70,3 +70,4 @@ gem "prometheus_exporter"
 gem "graphql"
 gem "rails-pg-extras"
 gem "discard", "~> 1.2"
+gem "graphiql-rails", group: :development
