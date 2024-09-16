@@ -30,6 +30,7 @@
   "shell": {
     "init_hook": [
       "echo 'Welcome to SpexOps-Backend/DevBox!' > /dev/null",
+      "ls ${PGDATA}/PG_VERSION || initdb -D ${PGDATA} ",
       "devbox run copy_pg_conf",
       "devbox run patch_pg_service"
     ],
@@ -38,7 +39,7 @@
         "echo \"Error: no test specified\" && exit 1"
       ],
       "copy_pg_conf": [
-        "cp devbox.d/postgresql_16/postgresql.conf  .devbox/virtenv/postgresql_16/data/"
+        "cp devbox.d/postgresql_16/postgresql.conf .devbox/virtenv/postgresql_16/data/"
       ],
       "patch_pg_service": [
         "yq --yaml-output --in-place '.processes.postgresql.command = \"pg_ctl start -o \\\"-k /tmp/ -p $PGPORT  \\\"\"' .devbox/virtenv/postgresql_16/process-compose.yaml"

@@ -10,8 +10,45 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 0) do
+ActiveRecord::Schema[7.2].define(version: 2023_06_28_061514) do
   # These are extensions that must be enabled in order to support this database
+  enable_extension "citext"
+  enable_extension "pg_stat_statements"
+  enable_extension "pgcrypto"
   enable_extension "plpgsql"
 
+  create_table "organization_user_memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "user_id", null: false
+    t.uuid "organization_id", null: false
+    t.integer "invitation_status", default: 1, null: false
+    t.integer "role", default: 1, null: false
+    t.datetime "discarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_organization_user_memberships_on_discarded_at"
+    t.index ["organization_id"], name: "index_organization_user_memberships_on_organization_id"
+    t.index ["user_id", "organization_id"], name: "index_organization_user_memberships_uniqueness", unique: true, where: "(discarded_at IS NULL)"
+    t.index ["user_id"], name: "index_organization_user_memberships_on_user_id"
+  end
+
+  create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.text "name", null: false
+    t.text "domain"
+    t.datetime "discarded_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_organizations_on_discarded_at"
+  end
+
+  create_table "users", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.citext "email", null: false
+    t.datetime "discarded_at", precision: nil
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["discarded_at"], name: "index_users_on_discarded_at"
+    t.index ["email"], name: "index_users_on_email", unique: true
+  end
+
+  add_foreign_key "organization_user_memberships", "organizations"
+  add_foreign_key "organization_user_memberships", "users"
 end

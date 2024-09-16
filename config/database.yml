@@ -15,7 +15,7 @@ development:
     <<: *default
     url: <%= ENV['DATABASE_PRIMARY_RW_URL'] %>
     database: primary_development
-    migrations_paths: db/migrate
+    migrations_paths: db/migrate_primary
   accounts:
     <<: *default
     url: <%= ENV['DATABASE_ACCOUNTS_RW_URL'] %>
