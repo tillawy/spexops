@@ -48,7 +48,7 @@ development:
     migrations_paths: db/migrate_accounts
   accounts_replica:
     <<: *default
-    url: <%= ENV['DATABASE_ACCOUNTS_RW_URL'] %>
+    url: <%= ENV['DATABASE_ACCOUNTS_RO_URL'] %>
     database: accounts_development
     replica: true
   projects:
@@ -140,7 +140,7 @@ test:
     migrations_paths: db/migrate_accounts
   accounts_replica:
     <<: *default
-    url: <%= ENV['DATABASE_ACCOUNTS_RW_URL'] %>
+    url: <%= ENV['DATABASE_ACCOUNTS_RO_URL'] %>
     database: accounts_test
     replica: true
   projects:
@@ -232,7 +232,7 @@ production:
     migrations_paths: db/migrate_accounts
   accounts_replica:
     <<: *default
-    url: <%= ENV['DATABASE_ACCOUNTS_RW_URL'] %>
+    url: <%= ENV['DATABASE_ACCOUNTS_RO_URL'] %>
     database: accounts_production
     replica: true
   projects:

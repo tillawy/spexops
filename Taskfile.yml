@@ -1,0 +1,75 @@
+# https://taskfile.dev
+
+version: '3'
+
+vars:
+  GREETING: Hello, World!
+
+env:
+  DATABASE_CACHE_RW_URL: "postgresql://ckretz:secret@localhost:5432/cache_development"
+  DATABASE_CACHE_RO_URL: "postgresql://ckretz:secret@localhost:5432/cache_development"
+  DATABASE_QUEUE_RW_URL: "postgresql://ckretz:secret@localhost:5432/queue_development"
+  DATABASE_QUEUE_RO_URL: "postgresql://ckretz:secret@localhost:5432/queue_development"
+  DATABASE_PRIMARY_RW_URL: "postgresql://ckretz:secret@localhost:5432/primary_development"
+  DATABASE_PRIMARY_RO_URL: "postgresql://ckretz:secret@localhost:5432/primary_development"
+  DATABASE_ACCOUNTS_RW_URL: "postgresql://ckretz:secret@localhost:5432/accounts_development"
+  DATABASE_ACCOUNTS_RO_URL: "postgresql://ckretz:secret@localhost:5432/accounts_development"
+  DATABASE_PROJECTS_RW_URL: "postgresql://ckretz:secret@localhost:5432/projects_development"
+  DATABASE_PROJECTS_RO_URL: "postgresql://ckretz:secret@localhost:5432/projects_development"
+  DATABASE_FEATURES_RW_URL: "postgresql://ckretz:secret@localhost:5432/features_development"
+  DATABASE_FEATURES_RO_URL: "postgresql://ckretz:secret@localhost:5432/features_development"
+  DATABASE_SUITES_RW_URL: "postgresql://ckretz:secret@localhost:5432/suites_development"
+  DATABASE_SUITES_RO_URL: "postgresql://ckretz:secret@localhost:5432/suites_development"
+  DATABASE_SPECS_RW_URL: "postgresql://ckretz:secret@localhost:5432/specs_development"
+  DATABASE_SPECS_RO_URL: "postgresql://ckretz:secret@localhost:5432/specs_development"
+  DATABASE_VERSIONS_RW_URL: "postgresql://ckretz:secret@localhost:5432/versions_development"
+  DATABASE_VERSIONS_RO_URL: "postgresql://ckretz:secret@localhost:5432/versions_development"
+  ACTIVE_RECORD_ENCRYPTION_DETERMINISTIC_KEY: "deterministickeyaaaaaaaaaaaaaaaa"
+  ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT: "keyderivationsaltbbbbbbbbbbbbbbb"
+  ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: "primarykeycccccccddddddddddddddd"
+
+
+tasks:
+  default:
+    cmds:
+      - echo "{{.GREETING}}"
+    silent: true
+
+  psql_user_create:
+    cmds:
+      - |
+        psql -U $(whoami) postgres -c "
+          create user spexops with password 'secret';
+        "
+
+  psql_user_password:
+    cmds:
+      - |
+        psql -U $(whoami) postgres -c "
+          ALTER USER spexops PASSWORD 'secret';
+        "
+
+  psql_user_permissions:
+    cmds:
+      - |
+        setup () {
+          echo "setting up database: ${2} for user: ${1}";
+          psql -U $(whoami) ${2} -c "
+            GRANT all privileges on DATABASE ${2} to ${1};
+            GRANT ALL privileges on all TABLES in SCHEMA public to ${1};
+            GRANT USAGE,SELECT ON ALL SEQUENCES IN SCHEMA public TO ${1};
+            GRANT ALL ON SCHEMA public TO ${1};
+            GRANT USAGE ON SCHEMA public TO ${1};
+            GRANT CONNECT ON DATABASE  ${2} to ${1};
+            GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ${1};
+          "
+        }
+        setup "spexops" "cache_development"
+        setup "spexops" "queue_development"
+        setup "spexops" "primary_development"
+        setup "spexops" "accounts_development"
+        setup "spexops" "projects_development"
+        setup "spexops" "features_development"
+        setup "spexops" "suites_development"
+        setup "spexops" "specs_development"
+        setup "spexops" "versions_development"
