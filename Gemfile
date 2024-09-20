@@ -50,6 +50,10 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "rubycritic", require: false
   gem "guard"
+  gem "database_consistency", require: false
+  gem "faker"
+  gem "prosopite"
+  gem "pg_query"
 end
 
 group :development do
@@ -77,3 +81,4 @@ gem "graphql"
 gem "rails-pg-extras"
 gem "discard", "~> 1.2"
 gem "graphiql-rails", group: :development
+gem 'ancestry'
