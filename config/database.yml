@@ -11,6 +11,14 @@ default: &default
   <% end %>
 
 development:
+  cache:
+    <<: *default
+    database: cache_development
+    migrations_paths: db/migrate_cache
+  queue:
+    <<: *default
+    database: queue_development
+    migrations_paths: db/migrate_queue
   primary:
     <<: *default
     url: <%= ENV['DATABASE_PRIMARY_RW_URL'] %>
