@@ -35,6 +35,12 @@
       "devbox run patch_pg_service"
     ],
     "scripts": {
+      "tailwindcss:build": [
+        "bundle exec rails tailwindcss:build"
+      ],
+      "tailwindcss:watch": [
+        "bundle exec rails tailwindcss:watch"
+      ],
       "test": [
         "echo \"Error: no test specified\" && exit 1"
       ],

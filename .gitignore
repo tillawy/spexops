@@ -49,3 +49,5 @@ swagger/
 *.swp
 
 
+app/assets/builds/
+
