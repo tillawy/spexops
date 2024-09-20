@@ -1,6 +1,54 @@
 {
   "lockfile_version": "1",
   "packages": {
+    "dagger@latest": {
+      "last_modified": "2023-10-15T14:24:03Z",
+      "resolved": "github:NixOS/nixpkgs/12bdeb01ff9e2d3917e6a44037ed7df6e6c3df9d#dagger",
+      "source": "devbox-search",
+      "version": "0.8.8",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/6122yp2f4jihyc1mfg43ihq0dsbd8daw-dagger-0.8.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/6122yp2f4jihyc1mfg43ihq0dsbd8daw-dagger-0.8.8"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/jzdw4vnjw2dix8i3c66l1qw2frr3v5as-dagger-0.8.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/jzdw4vnjw2dix8i3c66l1qw2frr3v5as-dagger-0.8.8"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/sra5844nczr02jzmzq71wrjda462qg32-dagger-0.8.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/sra5844nczr02jzmzq71wrjda462qg32-dagger-0.8.8"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/x28iymrc9y01yswccxanrkdbhwjj3b79-dagger-0.8.8",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/x28iymrc9y01yswccxanrkdbhwjj3b79-dagger-0.8.8"
+        }
+      }
+    },
     "gcc@latest": {
       "last_modified": "2024-09-12T11:58:09Z",
       "resolved": "github:NixOS/nixpkgs/280db3decab4cbeb22a4599bd472229ab74d25e1#gcc14",
