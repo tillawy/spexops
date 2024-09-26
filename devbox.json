@@ -45,6 +45,7 @@
         "echo \"Error: no test specified\" && exit 1"
       ],
       "copy_pg_conf": [
+        "cp devbox.d/postgresql_16/pg_hba.conf .devbox/virtenv/postgresql_16/data/",
         "cp devbox.d/postgresql_16/postgresql.conf .devbox/virtenv/postgresql_16/data/"
       ],
       "patch_pg_service": [
