@@ -9,7 +9,7 @@ class CreateOrganizationUserMemberships < ActiveRecord::Migration[7.0]
       t.datetime :discarded_at
       t.timestamps
     end
-    add_index :organization_user_memberships, [:user_id, :organization_id], unique: true, name: "index_organization_user_memberships_uniqueness", where: "(discarded_at is NULL)"
+    add_index :organization_user_memberships, [ :user_id, :organization_id ], unique: true, name: "index_organization_user_memberships_uniqueness", where: "(discarded_at is NULL)"
     add_index :organization_user_memberships, :discarded_at
   end
 end

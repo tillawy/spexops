@@ -13,6 +13,5 @@ module Features
     scope :for_user, ->(user:) {
       PointOfView.joins(project: :project_user_memberships).where('project_user_memberships.user': user)
     }
-
   end
 end

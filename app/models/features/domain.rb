@@ -11,7 +11,7 @@ module Features
 
     validates_length_of :name, minimum: 2, maximum: 65
 
-    UUID_PATTERN = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+    UUID_PATTERN = "[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}"
     has_ancestry cache_depth: true, primary_key_format: %r{\A#{UUID_PATTERN}(\/#{UUID_PATTERN})*\Z}
 
     scope :for_user, ->(user:) {
@@ -28,6 +28,5 @@ module Features
                optional: true,
                touch: true,
                counter_cache: :child_domains_count
-
   end
 end

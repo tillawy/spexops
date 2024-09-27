@@ -9,6 +9,5 @@ module Features
     has_many :point_of_views
     has_many :features
     belongs_to :creator, class_name: User.name
-
   end
 end

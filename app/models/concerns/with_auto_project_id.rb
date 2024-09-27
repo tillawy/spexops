@@ -25,6 +25,5 @@ module WithAutoProjectId
         end
       end
     end
-
   end
 end

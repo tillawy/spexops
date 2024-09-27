@@ -1,7 +1,6 @@
 # Model: Organization
 module Accounts
   class Organization < Base
-
     after_create_commit { broadcast_prepend_to "organizations" }
     after_update_commit { broadcast_replace_to "organizations" }
     after_destroy_commit { broadcast_remove_to "organizations" }
@@ -15,6 +14,5 @@ module Accounts
 
     has_many :organization_user_memberships, dependent: :destroy
     has_many :users, through: :organization_user_memberships
-
   end
 end

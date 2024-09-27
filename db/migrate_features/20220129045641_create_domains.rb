@@ -9,7 +9,7 @@ class CreateDomains < ActiveRecord::Migration[7.0]
 
       t.belongs_to :project, index: true, foreign_key: true, null: false, type: :uuid
 
-      t.references :parent_domain, foreign_key: {to_table: :domains}, index: true, type: :uuid
+      t.references :parent_domain, foreign_key: { to_table: :domains }, index: true, type: :uuid
       t.integer :child_domains_count, default: 0
 
       t.datetime :discarded_at
