@@ -135,7 +135,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: tillawy/ckretz
+          images: tillawy/spexops
           tags: |
             type=raw,value=${{ github.sha }}
       -
