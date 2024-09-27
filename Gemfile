@@ -50,24 +50,30 @@ group :development, :test do
   gem "bundler-audit", require: false
   gem "rubycritic", require: false
   gem "guard"
+  gem "guard-rspec", require: false
+  gem "guard-rubycritic", require: false
+  gem "guard-process"
+  gem "guard-rubocop"
   gem "database_consistency", require: false
   gem "faker"
   gem "prosopite"
   gem "pg_query"
+  gem "rspec-rails", "~> 7.0.0"
+  gem 'rswag-specs'
+  gem "factory_bot_rails"
+  gem "shoulda-matchers"
 end
 
 group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
-  gem "guard"
-  gem 'guard-minitest'
 end
 
 group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
-  gem 'shoulda-matchers'
+  gem "shoulda-matchers"
 end
 
 gem "rls_rails", github: "sbiastoch/rls_rails", branch: "master"
@@ -83,4 +89,6 @@ gem "graphql"
 gem "rails-pg-extras"
 gem "discard", "~> 1.2"
 gem "graphiql-rails", group: :development
-gem 'ancestry'
+gem "ancestry"
+gem "rswag-api"
+gem "rswag-ui"

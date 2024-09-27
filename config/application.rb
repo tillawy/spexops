@@ -17,6 +17,18 @@ module SpexopsBackend
       current_graphql_field: -> { GraphQL::Current.field&.path },
       current_dataloader_source: -> { GraphQL::Current.dataloader_source_class },
     ]
+
+    config.generators do |generate|
+      generate.test_framework :rspec,
+                              fixtures: true,
+                              view_specs: false,
+                              helper_specs: false,
+                              routing_specs: false,
+                              controller_specs: false,
+                              request_specs: false
+      generate.fixture_replacement :factory_girl, dir: "spec/factories"
+    end
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 7.2
 

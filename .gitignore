@@ -52,3 +52,12 @@ swagger/
 app/assets/builds/
 .bin/
 
+
+public/rubycritic/
+*.swp
+.idea
+devfile.secrets
+swagger/v1/swagger.json
+coverage
+public/rspec.html
+public/rubocop.html
