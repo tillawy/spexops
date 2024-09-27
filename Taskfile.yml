@@ -40,6 +40,14 @@ tasks:
       - bundle exec guard
     silent: true
 
+  tailwind_build:
+    cmds:
+      - bundle exec rails tailwindcss:build
+
+  tailwind_watch:
+    cmds:
+      - bundle exec rails tailwindcss:watch
+
   console:
     dotenv:
       - .bin/env
