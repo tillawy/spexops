@@ -46,7 +46,7 @@ guard :rspec, cmd: "RAILS_ENV=test bundle exec rspec --format documentation --fo
   end
 end
 
-guard :process, name: "RubyCritic all", command: "rubycritic --path=public/rubycritic/" do
+guard :process, name: "RubyCritic all", command: "rake rubycritic" do
   watch(%r{^app/(.+)\.rb$})
   watch(%r{^lib/(.+)\.rb$})
 end
