@@ -35,6 +35,11 @@ tasks:
       - echo "{{.GREETING}}"
     silent: true
 
+  guard:
+    cmds:
+      - bundle exec guard
+    silent: true
+
   console:
     dotenv:
       - .bin/env
