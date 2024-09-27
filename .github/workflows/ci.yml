@@ -110,7 +110,7 @@ jobs:
           ACTIVE_RECORD_ENCRYPTION_KEY_DERIVATION_SALT: "keyderivationsaltbbbbbbbbbbbbbbb"
           ACTIVE_RECORD_ENCRYPTION_PRIMARY_KEY: "primarykeycccccccddddddddddddddd"
           # REDIS_URL: redis://localhost:6379/0
-        run: bin/rails db:test:prepare && rspec --format documentation
+        run: bin/rails db:test:prepare && bundle exec rspec --format documentation
 
       - name: Keep screenshots from failed system tests
         uses: actions/upload-artifact@v4
