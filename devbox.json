@@ -25,7 +25,8 @@
     "ruby":    "3.3.4",
     "git":     "latest",
     "gcc":     "latest",
-    "dagger":  "latest"
+    "dagger":  "latest",
+    "act":     "latest"
   },
   "shell": {
     "init_hook": [

@@ -35,6 +35,9 @@ tasks:
       - echo "{{.GREETING}}"
     silent: true
 
+  act:
+    cmds:
+      - act --container-architecture linux/amd64
   guard:
     cmds:
       - bundle exec guard
