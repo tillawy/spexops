@@ -344,7 +344,7 @@ GEM
       google-protobuf (>= 3.22.3)
     prometheus_exporter (2.1.1)
       webrick
-    propshaft (1.0.0)
+    propshaft (1.0.1)
       actionpack (>= 7.0.0)
       activesupport (>= 7.0.0)
       rack
