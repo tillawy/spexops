@@ -21,6 +21,7 @@ tasks:
       - bundle exec rails db:drop
       - bundle exec rails db:prepare
       - task: psql_user_create
+      - task: psql_user_password
       - task: psql_user_permissions
 
   guard:
@@ -82,12 +83,13 @@ tasks:
             GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA public TO ${1};
           "
         }
-        setup "spexops" "cache_development"
-        setup "spexops" "queue_development"
-        setup "spexops" "primary_development"
-        setup "spexops" "accounts_development"
-        setup "spexops" "projects_development"
-        setup "spexops" "features_development"
-        setup "spexops" "suites_development"
-        setup "spexops" "specs_development"
-        setup "spexops" "versions_development"
+        setup "spexops" "spexops_cable_development"
+        setup "spexops" "spexops_cache_development"
+        setup "spexops" "spexops_queue_development"
+        setup "spexops" "spexops_primary_development"
+        setup "spexops" "spexops_accounts_development"
+        setup "spexops" "spexops_projects_development"
+        setup "spexops" "spexops_features_development"
+        setup "spexops" "spexops_suites_development"
+        setup "spexops" "spexops_specs_development"
+        setup "spexops" "spexops_versions_development"
