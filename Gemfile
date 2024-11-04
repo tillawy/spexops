@@ -91,3 +91,5 @@ gem "graphiql-rails", group: :development
 gem "ancestry"
 gem "rswag-api"
 gem "rswag-ui"
+
+gem "solid_cable", "~> 3.0"

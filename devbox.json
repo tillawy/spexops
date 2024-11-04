@@ -1,10 +1,9 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.11.0/.schema/devbox.schema.json",
   "env": {
-    "PGPORT":       "5432",
-    "PGHOST":       "/tmp/",
-    "DATABASE_URL": "postgresql://localhost:5432"
+    "DEVOBX_MESSAGE": "Welcome to SpexOps-Backend/DevBox!"
   },
+  "env_from": ".env",
   "packages": {
     "glibcLocales": {
       "version":   "latest",

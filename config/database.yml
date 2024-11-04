@@ -4,284 +4,270 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
-  <% if ENV["DB_HOST"] %>
-  host: <%= ENV["DB_HOST"] %>
-  username: <%=  ENV("DB_USERNAME", "postgres") %>
-  password:  <%=  ENV("DB_PASSWORD", "secret") %>
-  <% end %>
+  min_messages: warning
+  username: <%= ( Rake.try(:application) && Rake.application.top_level_tasks.any?{|a| a.include?("db:") } ) || "#{$0}".include?("rspec")  ? ENV.fetch("DATABASE_SUPER_USERNAME") : ENV.fetch("DATABASE_USERNAME", "spexops") %>
+  password: <%= ( Rake.try(:application) && Rake.application.top_level_tasks.any?{|a| a.include?("db:") } ) || "#{$0}".include?("rspec")  ? ENV.fetch("DATABASE_SUPER_PASSWORD") : ENV.fetch("DATABASE_PASSWORD", "secret") %>
 
 development:
+  cable:
+    <<: *default
+    url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
+    database: spexops_cable_development
+    migrations_paths: db/migrate_cable
+    host: localhost
   cache:
     <<: *default
     url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
-    database: cache_development
+    database: spexops_cache_development
     migrations_paths: db/migrate_cache
-  cache_replica:
-    <<: *default
-    url: <%= ENV['DATABASE_CACHE_RO_URL'] %>
-    database: cache_development
-    replica: true
   queue:
     <<: *default
     url: <%= ENV['DATABASE_QUEUE_RW_URL'] %>
-    database: queue_development
+    database: spexops_queue_development
     migrations_paths: db/migrate_queue
-  queue_replica:
-    <<: *default
-    url: <%= ENV['DATABASE_QUEUE_RO_URL'] %>
-    database: queue_development
-    replica: true
   primary:
     <<: *default
     url: <%= ENV['DATABASE_PRIMARY_RW_URL'] %>
-    database: primary_development
+    database: spexops_primary_development
     migrations_paths: db/migrate_primary
   primary_replica:
     <<: *default
     url: <%= ENV['DATABASE_PRIMARY_RO_URL'] %>
-    database: primary_development
+    database: spexops_primary_development
     replica: true
   accounts:
     <<: *default
     url: <%= ENV['DATABASE_ACCOUNTS_RW_URL'] %>
-    database: accounts_development
+    database: spexops_accounts_development
     migrations_paths: db/migrate_accounts
   accounts_replica:
     <<: *default
     url: <%= ENV['DATABASE_ACCOUNTS_RO_URL'] %>
-    database: accounts_development
+    database: spexops_accounts_development
     replica: true
   projects:
     <<: *default
     url: <%= ENV['DATABASE_PROJECTS_RW_URL'] %>
-    database: projects_development
+    database: spexops_projects_development
     migrations_paths: db/migrate_projects
   projects_replica:
     <<: *default
     url: <%= ENV['DATABASE_PROJECTS_RO_URL'] %>
-    database: projects_development
+    database: spexops_projects_development
     replica: true
   features:
     <<: *default
     url: <%= ENV['DATABASE_FEATURES_RW_URL'] %>
-    database: features_development
+    database: spexops_features_development
     migrations_paths: db/migrate_features
   features_replica:
     <<: *default
     url: <%= ENV['DATABASE_FEATURES_RO_URL'] %>
-    database: features_development
+    database: spexops_features_development
     replica: true
   suites:
     <<: *default
     url: <%= ENV['DATABASE_SUITES_RW_URL'] %>
-    database: suites_development
+    database: spexops_suites_development
     migrations_paths: db/migrate_suites
   suites_replica:
     <<: *default
     url: <%= ENV['DATABASE_SUITES_RO_URL'] %>
-    database: suites_development
+    database: spexops_suites_development
     replica: true
   specs:
     <<: *default
     url: <%= ENV['DATABASE_SPECS_RW_URL'] %>
-    database: specs_development
+    database: spexops_specs_development
     migrations_paths: db/migrate_specs
   specs_replica:
     <<: *default
     url: <%= ENV['DATABASE_SPECS_RO_URL'] %>
-    database: specs_development
+    database: spexops_specs_development
     replica: true
   versions:
     <<: *default
     url: <%= ENV['DATABASE_VERSIONS_RW_URL'] %>
-    database: versions_development
+    database: spexops_versions_development
     migrations_paths: db/migrate_versions
   versions_replica:
     <<: *default
     url: <%= ENV['DATABASE_VERSIONS_RO_URL'] %>
-    database: versions_development
+    database: spexops_versions_development
     replica: true
 
 test:
+  cable:
+    <<: *default
+    url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
+    database: spexops_cable_test
+    migrations_paths: db/migrate_cable
+    host: localhost
   cache:
     <<: *default
     url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
-    database: cache_test
+    database: spexops_cache_development
     migrations_paths: db/migrate_cache
-  cache_replica:
-    <<: *default
-    url: <%= ENV['DATABASE_CACHE_RO_URL'] %>
-    database: cache_development
-    replica: true
   queue:
     <<: *default
     url: <%= ENV['DATABASE_QUEUE_RW_URL'] %>
-    database: queue_test
+    database: spexops_queue_test
     migrations_paths: db/migrate_queue
-  queue_replica:
-    <<: *default
-    url: <%= ENV['DATABASE_QUEUE_RO_URL'] %>
-    database: queue_test
-    replica: true
   primary:
     <<: *default
     url: <%= ENV['DATABASE_PRIMARY_RW_URL'] %>
-    database: primary_test
+    database: spexops_primary_test
     migrations_paths: db/migrate_primary
   primary_replica:
     <<: *default
     url: <%= ENV['DATABASE_PRIMARY_RO_URL'] %>
-    database: primary_test
+    database: spexops_primary_test
     replica: true
   accounts:
     <<: *default
     url: <%= ENV['DATABASE_ACCOUNTS_RW_URL'] %>
-    database: accounts_test
+    database: spexops_accounts_test
     migrations_paths: db/migrate_accounts
   accounts_replica:
     <<: *default
     url: <%= ENV['DATABASE_ACCOUNTS_RO_URL'] %>
-    database: accounts_test
+    database: spexops_accounts_test
     replica: true
   projects:
     <<: *default
     url: <%= ENV['DATABASE_PROJECTS_RW_URL'] %>
-    database: projects_test
+    database: spexops_projects_test
     migrations_paths: db/migrate_projects
   projects_replica:
     <<: *default
     url: <%= ENV['DATABASE_PROJECTS_RO_URL'] %>
-    database: projects_test
+    database: spexops_projects_test
     replica: true
   features:
     <<: *default
     url: <%= ENV['DATABASE_FEATURES_RW_URL'] %>
-    database: features_test
+    database: spexops_features_test
     migrations_paths: db/migrate_features
   features_replica:
     <<: *default
     url: <%= ENV['DATABASE_FEATURES_RO_URL'] %>
-    database: features_test
+    database: spexops_features_test
     replica: true
   suites:
     <<: *default
     url: <%= ENV['DATABASE_SUITES_RW_URL'] %>
-    database: suites_test
+    database: spexops_suites_test
     migrations_paths: db/migrate_suites
   suites_replica:
     <<: *default
     url: <%= ENV['DATABASE_SUITES_RO_URL'] %>
-    database: suites_test
+    database: spexops_suites_test
     replica: true
   specs:
     <<: *default
     url: <%= ENV['DATABASE_SPECS_RW_URL'] %>
-    database: specs_test
+    database: spexops_specs_test
     migrations_paths: db/migrate_specs
   specs_replica:
     <<: *default
     url: <%= ENV['DATABASE_SPECS_RO_URL'] %>
-    database: specs_test
+    database: spexops_specs_test
     replica: true
   versions:
     <<: *default
     url: <%= ENV['DATABASE_VERSIONS_RW_URL'] %>
-    database: versions_test
+    database: spexops_versions_test
     migrations_paths: db/migrate_versions
   versions_replica:
     <<: *default
     url: <%= ENV['DATABASE_VERSIONS_RO_URL'] %>
-    database: versions_test
+    database: spexops_versions_test
     replica: true
 
 production:
+  cable:
+    <<: *default
+    url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
+    database: spexops_cable_production
+    migrations_paths: db/migrate_cable
+    host: localhost
   cache:
     <<: *default
     url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
-    database: cache_production
+    database: spexops_cache_production
     migrations_paths: db/migrate_cache
-  cache_replica:
-    <<: *default
-    url: <%= ENV['DATABASE_CACHE_RO_URL'] %>
-    database: cache_production
-    replica: true
   queue:
     <<: *default
     url: <%= ENV['DATABASE_QUEUE_RW_URL'] %>
-    database: queue_production
+    database: spexops_queue_production
     migrations_paths: db/migrate_queue
-  queue_replica:
-    <<: *default
-    url: <%= ENV['DATABASE_QUEUE_RO_URL'] %>
-    database: queue_development
-    replica: true
   primary:
     <<: *default
     url: <%= ENV['DATABASE_PRIMARY_RW_URL'] %>
-    database: primary_production
+    database: spexops_primary_production
     migrations_paths: db/migrate_primary
   primary_replica:
     <<: *default
     url: <%= ENV['DATABASE_PRIMARY_RO_URL'] %>
-    database: primary_production
+    database: spexops_primary_production
     replica: true
   accounts:
     <<: *default
     url: <%= ENV['DATABASE_ACCOUNTS_RW_URL'] %>
-    database: accounts_production
+    database: spexops_accounts_production
     migrations_paths: db/migrate_accounts
   accounts_replica:
     <<: *default
     url: <%= ENV['DATABASE_ACCOUNTS_RO_URL'] %>
-    database: accounts_production
+    database: spexops_accounts_production
     replica: true
   projects:
     <<: *default
     url: <%= ENV['DATABASE_PROJECTS_RW_URL'] %>
-    database: projects_production
+    database: spexops_projects_production
     migrations_paths: db/migrate_projects
   projects_replica:
     <<: *default
     url: <%= ENV['DATABASE_PROJECTS_RO_URL'] %>
-    database: projects_production
+    database: spexops_projects_production
     replica: true
   features:
     <<: *default
     url: <%= ENV['DATABASE_FEATURES_RW_URL'] %>
-    database: features_production
+    database: spexops_features_production
     migrations_paths: db/migrate_features
   features_replica:
     <<: *default
     url: <%= ENV['DATABASE_FEATURES_RO_URL'] %>
-    database: features_production
+    database: spexops_features_production
     replica: true
   suites:
     <<: *default
     url: <%= ENV['DATABASE_SUITES_RW_URL'] %>
-    database: suites_production
+    database: spexops_suites_production
     migrations_paths: db/migrate_suites
   suites_replica:
     <<: *default
     url: <%= ENV['DATABASE_SUITES_RO_URL'] %>
-    database: suites_production
+    database: spexops_suites_production
     replica: true
   specs:
     <<: *default
     url: <%= ENV['DATABASE_SPECS_RW_URL'] %>
-    database: specs_production
+    database: spexops_specs_production
     migrations_paths: db/migrate_specs
   specs_replica:
     <<: *default
     url: <%= ENV['DATABASE_SPECS_RO_URL'] %>
-    database: specs_production
+    database: spexops_specs_production
     replica: true
   versions:
     <<: *default
     url: <%= ENV['DATABASE_VERSIONS_RW_URL'] %>
-    database: versions_production
+    database: spexops_versions_production
     migrations_paths: db/migrate_versions
   versions_replica:
     <<: *default
     url: <%= ENV['DATABASE_VERSIONS_RO_URL'] %>
-    database: versions_production
+    database: spexops_versions_production
     replica: true

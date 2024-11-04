@@ -532,6 +532,11 @@ GEM
     snaky_hash (2.0.1)
       hashie
       version_gem (~> 1.1, >= 1.1.1)
+    solid_cable (3.0.2)
+      actioncable (>= 7.2)
+      activejob (>= 7.2)
+      activerecord (>= 7.2)
+      railties (>= 7.2)
     solid_cache (1.0.6)
       activejob (>= 7.2)
       activerecord (>= 7.2)
@@ -640,6 +645,7 @@ DEPENDENCIES
   rubycritic
   selenium-webdriver
   shoulda-matchers
+  solid_cable (~> 3.0)
   solid_cache
   solid_queue
   stimulus-rails
