@@ -57,6 +57,7 @@ tasks:
       - |
         psql -U $(whoami) postgres -c "
           ALTER USER spexops PASSWORD 'secret';
+          ALTER USER tillawy PASSWORD 'secret';
         "
   setup:
     env:
