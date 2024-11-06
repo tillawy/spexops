@@ -23,8 +23,7 @@
     "go-task": "latest",
     "ruby":    "3.3.4",
     "git":     "latest",
-    "gcc":     "latest",
-    "dagger":  "latest"
+    "gcc":     "latest"
   },
   "shell": {
     "init_hook": [
