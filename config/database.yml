@@ -106,7 +106,7 @@ test:
   cache:
     <<: *default
     url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
-    database: spexops_cache_development
+    database: spexops_cache_test
     migrations_paths: db/migrate_cache
   queue:
     <<: *default

@@ -47,3 +47,4 @@
 /.dockerignore
 /Dockerfile*
 Taskfile.yml
+dagger/
