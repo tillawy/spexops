@@ -16,7 +16,10 @@ package main
 
 import (
 	"context"
-	"dagger/spexops-backend/internal/dagger"
+	"dagger/ckretz/internal/dagger"
+	"fmt"
+	"math"
+	"math/rand"
 )
 
 type SpexopsBackend struct{}
@@ -34,4 +37,18 @@ func (m *SpexopsBackend) GrepDir(ctx context.Context, directoryArg *dagger.Direc
 		WithWorkdir("/mnt").
 		WithExec([]string{"grep", "-R", pattern, "."}).
 		Stdout(ctx)
+}
+
+func (m *SpexopsBackend) BuildEnv(source *dagger.Directory) *dagger.Container {
+	rubyCache := dag.CacheVolume("rails-spexops")
+	aptCache := dag.CacheVolume("apt-spexops")
+	return dag.Container().
+	    From("ghcr.io/rails/devcontainer/images/ruby:3.3.5").
+		WithMountedCache("/var/cache/apt/archives/", aptCache).
+// 		WithExec([]string{"apt", "update"}).
+// 		WithExec([]string{"apt", "install", "--no-install-recommends" , "-y" , "build-essential" , "git" , "libpq-dev" ,"libvips" , "pkg-config", "curl", "libvips", "postgresql-client"}).
+// 		WithMountedCache("/usr/local/bundle", rubyCache).
+// 		WithDirectory("/rails", source).
+// 		WithWorkdir("/rails").
+		WithExec([]string{"bundle", "install"})
 }
