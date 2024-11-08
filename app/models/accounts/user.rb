@@ -2,7 +2,6 @@ module Accounts
   class User < Base
     include Discard::Model
     default_scope -> { kept }
-    has_paper_trail
     encrypts :email, deterministic: true, downcase: true
 
     validates :email, format: /\A[^@\s]+@([^@\s]+\.)+[^@\s]+\z/
