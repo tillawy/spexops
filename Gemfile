@@ -59,7 +59,7 @@ group :development, :test do
   gem "faker"
   gem "prosopite"
   gem "pg_query"
-  gem "rspec-rails", "~> 7.0.0"
+  gem "rspec-rails", "~> 7"
   gem "rswag-specs"
   gem "factory_bot_rails"
 end
