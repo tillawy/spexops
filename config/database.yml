@@ -5,8 +5,8 @@ default: &default
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   min_messages: warning
-  username: <%= ( Rake.try(:application) && Rake.application.top_level_tasks.any?{|a| a.include?("db:") } ) || "#{$0}".include?("rspec")  ? ENV.fetch("DATABASE_SUPER_USERNAME") : ENV.fetch("DATABASE_USERNAME", "spexops") %>
-  password: <%= ( Rake.try(:application) && Rake.application.top_level_tasks.any?{|a| a.include?("db:") } ) || "#{$0}".include?("rspec")  ? ENV.fetch("DATABASE_SUPER_PASSWORD") : ENV.fetch("DATABASE_PASSWORD", "secret") %>
+  username: <%= (Rake.try(:application) && Rake.application.top_level_tasks.any?{|a| a.include?("db:") }) || "#{$0}".include?("rspec") ? ENV.fetch("DATABASE_SUPER_USERNAME") : ENV.fetch("DATABASE_USERNAME", "spexops") %>
+  password: <%= (Rake.try(:application) && Rake.application.top_level_tasks.any?{|a| a.include?("db:") }) || "#{$0}".include?("rspec") ? ENV.fetch("DATABASE_SUPER_PASSWORD") : ENV.fetch("DATABASE_PASSWORD", "secret") %>
 
 development:
   cable:

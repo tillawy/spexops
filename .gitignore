@@ -47,6 +47,7 @@ coverage
 http/
 swagger/
 *.swp
+.vscode/
 
 
 app/assets/builds/
@@ -55,7 +56,6 @@ app/assets/builds/
 
 public/rubycritic/
 *.swp
-.idea
 devfile.secrets
 swagger/v1/swagger.json
 coverage

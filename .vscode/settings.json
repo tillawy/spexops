@@ -1,0 +1,9 @@
+{
+  "terminal.integrated.profiles.osx": {
+    "devboxCompatibleShell": {
+      "path": "/opt/homebrew/bin/nu",
+      "args": []
+    }
+  },
+  "terminal.integrated.defaultProfile.osx": "devboxCompatibleShell"
+}

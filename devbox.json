@@ -1,9 +1,10 @@
 {
   "$schema": "https://raw.githubusercontent.com/jetify-com/devbox/0.11.0/.schema/devbox.schema.json",
   "env": {
-    "DEVOBX_MESSAGE": "Welcome to SpexOps-Backend/DevBox!",
-    "PGPORT": "5433",
-    "PGHOST": "/tmp/"
+    "DEVOBX_MESSAGE":                      "Welcome to SpexOps-Backend/DevBox!",
+    "PGPORT":                              "5433",
+    "PGHOST":                              "/tmp/",
+    "OBJC_DISABLE_INITIALIZE_FORK_SAFETY": "YES"
   },
   "env_from": ".env",
   "packages": {
@@ -25,7 +26,8 @@
     "go-task": "latest",
     "git":     "latest",
     "gcc":     "latest",
-    "ruby":    "latest"
+    "ruby":    "latest",
+    "go":      "latest"
   },
   "shell": {
     "init_hook": [
