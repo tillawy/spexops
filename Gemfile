@@ -93,3 +93,4 @@ gem "graphiql-rails", group: :development
 gem "ancestry"
 gem "rswag-api"
 gem "rswag-ui"
+gem "ostruct" # for rswag, remove later
