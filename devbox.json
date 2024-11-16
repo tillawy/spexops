@@ -33,6 +33,7 @@
     "init_hook": [
       "echo 'Welcome to SpexOps-Backend/DevBox!' > /dev/null",
       "ls ${PGDATA}/PG_VERSION || initdb -D ${PGDATA} ",
+      "echo \"GOROOT=$(go env GOROOT)\"",
       "devbox run copy_pg_conf",
       "devbox run patch_pg_service"
     ],
