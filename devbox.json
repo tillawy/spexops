@@ -23,11 +23,12 @@
     "postgresql_16": {
       "version": "latest"
     },
-    "go-task": "latest",
-    "git":     "latest",
-    "gcc":     "latest",
-    "ruby":    "latest",
-    "go":      "latest"
+    "go-task":   "latest",
+    "git":       "latest",
+    "gcc":       "latest",
+    "ruby":      "latest",
+    "go":        "latest",
+    "shadowenv": "latest"
   },
   "shell": {
     "init_hook": [

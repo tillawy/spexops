@@ -491,6 +491,54 @@
         }
       }
     },
+    "shadowenv@latest": {
+      "last_modified": "2024-11-03T14:18:04Z",
+      "resolved": "github:NixOS/nixpkgs/4ae2e647537bcdbb82265469442713d066675275#shadowenv",
+      "source": "devbox-search",
+      "version": "2.1.2",
+      "systems": {
+        "aarch64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/zxdx4krp5icvw4xmmi7kaja9lwwmnd56-shadowenv-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/zxdx4krp5icvw4xmmi7kaja9lwwmnd56-shadowenv-2.1.2"
+        },
+        "aarch64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/f0wnxg2pgz37w8dkrg55znzjlncgg320-shadowenv-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/f0wnxg2pgz37w8dkrg55znzjlncgg320-shadowenv-2.1.2"
+        },
+        "x86_64-darwin": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/madp7y7lcyyxx2zh08gxrpc0fkzz5xba-shadowenv-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/madp7y7lcyyxx2zh08gxrpc0fkzz5xba-shadowenv-2.1.2"
+        },
+        "x86_64-linux": {
+          "outputs": [
+            {
+              "name": "out",
+              "path": "/nix/store/gjfiy42cjsw7q3sl7i5wlgf8ycbmlp7h-shadowenv-2.1.2",
+              "default": true
+            }
+          ],
+          "store_path": "/nix/store/gjfiy42cjsw7q3sl7i5wlgf8ycbmlp7h-shadowenv-2.1.2"
+        }
+      }
+    },
     "yq@latest": {
       "last_modified": "2024-10-13T23:44:06Z",
       "resolved": "github:NixOS/nixpkgs/d4f247e89f6e10120f911e2e2d2254a050d0f732#yq",
