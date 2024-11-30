@@ -179,12 +179,12 @@ jobs:
         name: FluxCD write target image tag
         uses: mikefarah/yq@master
         with:
-          cmd: yq --output-format=yaml -i 'select(di == 1).spec.template.spec.containers.0.image = "tillawy/spexops:${{ github.sha }}"' apps/templates/05-spexops.yaml
+          cmd: yq --output-format=yaml -i '.apps.spexops.tag = "tillawy/spexops:${{ github.sha }}"' apps/values.yaml
       -
         name: FluxCD debug  ./apps/templates/05-spexops.yaml
         uses: mikefarah/yq@master
         with:
-          cmd: cat ./apps/templates/05-spexops.yaml
+          cmd: cat ./apps/values.yaml
       -
         name: Commit files
         run: |
