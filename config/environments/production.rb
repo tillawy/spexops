@@ -44,6 +44,12 @@ Rails.application.configure do
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   config.force_ssl = true
+  config.ssl_options = {
+    redirect: { exclude: ->(request) {
+      request.fullpath.include?("health") || request.fullpath.include?("up") || request.path == "/cable"
+    } },
+    hsts: { expires: 31.days, subdomains: false }
+  }
 
   # Skip http-to-https redirect for the default health check endpoint.
   # config.ssl_options = { redirect: { exclude: ->(request) { request.path == "/up" } } }
