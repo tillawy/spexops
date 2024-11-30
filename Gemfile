@@ -89,7 +89,7 @@ gem "prometheus_exporter"
 gem "graphql"
 gem "rails-pg-extras"
 gem "discard", "~> 1.2"
-gem "graphiql-rails", group: :development
+gem "graphiql-rails"
 gem "ancestry"
 gem "rswag-api"
 gem "rswag-ui"
