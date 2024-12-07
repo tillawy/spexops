@@ -140,7 +140,9 @@ func (m *SpexopsBackend) BuildEnv(source *dagger.Directory) *dagger.Container {
 		WithExec([]string{"apt", "update"}).
 		WithExec([]string{"apt", "install", "--no-install-recommends" , "-y" , "build-essential" , "git" , "libpq-dev" ,"libvips" , "pkg-config", "curl", "libvips", "postgresql-client"}).
 		WithMountedCache("/usr/local/bundle", rubyCache).
-		WithDirectory("/rails", source).
+    WithFile("/rails/Gemfile", source.File("Gemfile")).
+    WithFile("/rails/Gemfile.lock", source.File("Gemfile.lock")).
 		WithWorkdir("/rails").
-		WithExec([]string{"bundle", "install"})
+		WithExec([]string{"bundle", "install"}).
+		WithDirectory("/rails", source)
 }
