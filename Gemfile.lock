@@ -373,7 +373,7 @@ GEM
     pg (1.5.9)
     pg_query (6.0.0)
       google-protobuf (>= 3.25.3)
-    prometheus_exporter (2.1.1)
+    prometheus_exporter (2.2.0)
       webrick
     propshaft (1.1.0)
       actionpack (>= 7.0.0)
@@ -616,7 +616,7 @@ GEM
       activemodel (>= 6.0.0)
       bindex (>= 0.4.0)
       railties (>= 6.0.0)
-    webrick (1.9.0)
+    webrick (1.9.1)
     websocket (1.2.11)
     websocket-driver (0.7.6)
       websocket-extensions (>= 0.1.0)
