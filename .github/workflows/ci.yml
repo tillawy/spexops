@@ -167,7 +167,7 @@ jobs:
     needs: [ build_container ]
     steps:
       -
-        name: FluxCD Checkout
+        name: ArgoCD Checkout
         uses: actions/checkout@v4
         with:
           repository: 'tillawy/spexops-argocd-production'
@@ -176,12 +176,12 @@ jobs:
           # Relative path under $GITHUB_WORKSPACE to place the repository
           path: ''
       -
-        name: FluxCD write target image tag
+        name: ArgoCD write target image tag
         uses: mikefarah/yq@master
         with:
           cmd: yq --output-format=yaml -i '.apps.spexops.tag = "tillawy/spexops:${{ github.sha }}"' apps/values.yaml
       -
-        name: FluxCD debug  ./apps/templates/05-spexops.yaml
+        name: ArgoCD debug  ./apps/templates/05-spexops.yaml
         uses: mikefarah/yq@master
         with:
           cmd: cat ./apps/values.yaml
