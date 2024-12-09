@@ -1,7 +1,7 @@
 # Model: Organization
 module Accounts
   class Organization < Base
-    after_create_commit { broadcast_prepend_to "organizations" }
+    after_create_commit { broadcast_prepend_later_to "organizations" }
     after_update_commit { broadcast_replace_to "organizations" }
     after_destroy_commit { broadcast_remove_to "organizations" }
 

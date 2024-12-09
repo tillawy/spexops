@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  namespace :accounts do
+    resources :organizations
+  end
   mount Rswag::Ui::Engine => "/api-docs"
   mount Rswag::Api::Engine => "/api-docs"
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"

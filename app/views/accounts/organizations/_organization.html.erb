@@ -1,0 +1,18 @@
+<%= turbo_frame_tag dom_id(organization), class: "grid grid-cols-3" do %>
+  <div class="">
+    <%= link_to organization.name, edit_accounts_organization_path(organization),
+                data: { turbo_stream: true },
+                class: "text-gray-100 lg:text-xl text-gray-600 dark:text-gray-200" %>
+  </div>
+  <div class="">
+    <%= link_to organization.created_at.to_date, organization, "data-turbo-frame": "_top", class: "lg:text-xl text-gray-600 dark:text-gray-200" %>
+    <%= organization.created_at.to_date %>
+  </div>
+
+  <div class="">
+    <%= button_to "Destroy", accounts_organization_path(organization), method: :delete,
+                  form: {data: {turbo_confirm: "Delete organization?"}},
+                  class: "text-md py-2.5 px-5 rounded-lg font-medium text-sm inline-block" %>
+  </div>
+<% end %>
+

@@ -1,0 +1,32 @@
+<%= form_with(model: organization, id: "new_organization", class: "contents") do |form| %>
+  <% if organization.errors.any? %>
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
+      <h2><%= pluralize(organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
+      <ul>
+        <% organization.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="inline">
+    <fieldset class="mb-8">
+      <legend class="text-xl font-bold text-gray-500">Organiztion</legend>
+
+      <%= form.label :name, "Name:", class: "w-full text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+      <%= form.text_field :name, class: "mt-1 w-full rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+
+      <br/>
+
+      <%= form.label :domain, "Domain:", class: "w-full text-gray-500 font-bold md:text-right mb-1 md:mb-0 pr-4" %>
+      <%= form.text_field :domain, class: "mt-1 w-full rounded-md shadow-sm focus:ring focus:ring-indigo-200 focus:ring-opacity-50" %>
+    </fieldset>
+
+    <div class="mt-6 flex flex-row justify-stretch space-x-4">
+      <%= form.submit class: "w-full rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+      <%= link_to "Cancel", accounts_organizations_path, class: "w-full rounded-lg text-center py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    </div>
+  </div>
+<% end %>
+
