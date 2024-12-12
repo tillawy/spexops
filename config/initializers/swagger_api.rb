@@ -4,8 +4,11 @@ Rswag::Api.configure do |c|
   # NOTE: If you're using rswag-specs to generate Swagger, you'll need to ensure
   # that it's configured to generate files in the same folder
   c.openapi_root = Rails.root.to_s + "/swagger"
-
-  # Inject a lambda function to alter the returned Swagger prior to serialization
+  c.swagger_filter = lambda { |swagger, env|
+    swagger["servers"][0]["variables"]["defaultHost"]["default"] = env["HTTP_HOST"]
+    swagger["components"]["securitySchemes"]["keycloak"]["flows"]["implicit"]["authorizationUrl"] = ENV.fetch("KEYCLOAK_AUTH_SERVER_URL", "http://localhost:8080") + "/realms/" + ENV.fetch("KEYCLOAK_REALM", "spexops") + "/protocol/openid-connect/auth"
+  }
+  # Inject a lamda function to alter the returned Swagger prior to serialization
   # The function will have access to the rack env for the current request
   # For example, you could leverage this to dynamically assign the "host" property
   #

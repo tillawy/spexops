@@ -155,6 +155,11 @@ GEM
       dry-logic (>= 1.4, < 2)
       dry-types (>= 1.7, < 2)
       zeitwerk (~> 2.6)
+    dry-struct (1.6.0)
+      dry-core (~> 1.0, < 2)
+      dry-types (>= 1.7, < 2)
+      ice_nine (~> 0.11)
+      zeitwerk (~> 2.6)
     dry-types (1.7.2)
       bigdecimal (~> 3.0)
       concurrent-ruby (~> 1.0)
@@ -510,7 +515,7 @@ GEM
     rubocop-minitest (0.36.0)
       rubocop (>= 1.61, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
-    rubocop-performance (1.23.0)
+    rubocop-performance (1.22.1)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.31.1, < 2.0)
     rubocop-rails (2.27.0)
@@ -643,6 +648,7 @@ DEPENDENCIES
   database_consistency
   debug
   discard (~> 1.2)
+  dry-struct
   factory_bot_rails
   faker
   graphiql-rails
@@ -674,6 +680,8 @@ DEPENDENCIES
   rswag-specs
   rswag-ui
   rubocop (~> 1.69)
+  rubocop-performance
+  rubocop-rails
   rubocop-rails-omakase
   rubycritic
   selenium-webdriver

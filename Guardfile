@@ -1,4 +1,6 @@
-ignore %r{^.devbox/}
+# vim: syntax=ruby
+
+ignore %r{^.devbox/ }
 
 guard :rspec, cmd: "RAILS_ENV=test bundle exec rspec --format documentation --format html --out ./public/rspec.html" do
   require "guard/rspec/dsl"
