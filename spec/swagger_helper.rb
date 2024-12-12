@@ -68,9 +68,21 @@ RSpec.configure do |config|
     }
   end
 
-  schemas = Hash[*Accounts::Commands.constants.excluding(:Shared).map(&:downcase).map { |c|
-    [ "#{c.to_s.pluralize}_page".to_sym, page(type: c), c, model(modul: "Accounts", type: c) ]
-  }.flatten]
+
+  modules = [ Accounts ]
+
+  schemas = modules.map { |mod|
+    constants = mod::Commands.constants
+    Hash[*constants.map(&:downcase).map { |c|
+      [
+        "#{c.to_s.pluralize}_page".to_sym,
+        page(type: c),
+        c,
+        model(modul: mod.name, type: c)
+      ]
+    }.flatten]
+  }.reduce(&:merge)
+
 
   config.openapi_specs = {
     "v1/swagger.json" => {
