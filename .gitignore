@@ -61,3 +61,10 @@ swagger/v1/swagger.json
 coverage
 public/rspec.html
 public/rubocop.html
+
+.terraform/
+secrets.tfvars
+terraform.tfstate
+terraform.tfstate.backup
+.terraform.lock.hcl
+
