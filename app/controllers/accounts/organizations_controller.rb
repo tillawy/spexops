@@ -1,5 +1,6 @@
 module Accounts
   class OrganizationsController < ApplicationController
+    include WithCurrentUser
     before_action :set_organization, only: %i[ show edit update destroy ]
 
     # GET /accounts/organizations or /accounts/organizations.json
@@ -25,7 +26,6 @@ module Accounts
       @organization = Organization.new(organization_params)
 
       respond_to do |format|
-        debugger
         if @organization.save
           format.html { redirect_to [ @organization ], notice: "Organization was successfully created." }
           format.json { render :show, status: :created, location: @organization }
@@ -67,7 +67,6 @@ module Accounts
 
     # Only allow a list of trusted parameters through.
     def organization_params
-      # debugger
       params.require(:accounts_organization).permit(:name, :domain)
     end
   end

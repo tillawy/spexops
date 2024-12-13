@@ -10,7 +10,7 @@ module Accounts
         # @param [Dry::Struct] command
         # @param [String] current_user_id
         def self.handle(command:, current_user_id:)
-          object = ::User.find_or_create_by(id: command.id, email: command.email)
+          object = Accounts::User.find_or_create_by(id: command.id, email: command.email)
           if object.save
             OpenStruct.new(success?: true, object: object, errors: nil)
           else
