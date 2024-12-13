@@ -28,7 +28,8 @@
     "gcc":       "latest",
     "ruby":      "latest",
     "go":        "latest",
-    "shadowenv": "latest"
+    "shadowenv": "latest",
+    "opentofu":  "latest"
   },
   "shell": {
     "init_hook": [
@@ -86,6 +87,15 @@
         "make install",
         "cd /tmp",
         "rm -rf ./pg_hint_plan-REL16_1_6_0"
+      ],
+      "docker_compose_keycloak_up": [
+        "docker compose --project-directory=./keycloak/docker/ up"
+      ],
+      "docker_compose_keycloak_rm": [
+        "docker compose --project-directory=./keycloak/docker/ rm -f"
+      ],
+      "tofu_keycloak": [
+        "tofu -chdir=./keycloak/tofu/ apply -auto-approve"
       ]
     }
   }
