@@ -6,5 +6,5 @@ Rswag::Ui.configure do |c|
   # then the list below should correspond to the relative paths for those endpoints
 
   c.openapi_endpoint "/api-docs/v1/swagger.json", "App V1 API Docs"
-  c.oauth_config_object = { clientId: "spx-apidocs" }
+  c.oauth_config_object = { clientId: "spx-backend-apidocs" }
 end

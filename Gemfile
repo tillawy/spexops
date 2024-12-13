@@ -84,6 +84,7 @@ gem "omniauth-rails_csrf_protection"
 gem "omniauth-keycloak"
 gem "rails_keycloak_authorization"
 gem "paper_trail"
+gem "pundit"
 
 gem "prometheus_exporter"
 

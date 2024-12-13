@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   namespace :accounts do
     resources :organizations
   end
+  mount RailsPgExtras::Web::Engine, at: "pg_extras"
   mount Rswag::Ui::Engine => "/api-docs"
   mount Rswag::Api::Engine => "/api-docs"
   mount GraphiQL::Rails::Engine, at: "/graphiql", graphql_path: "/graphql"
@@ -16,6 +17,15 @@ Rails.application.routes.draw do
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
 
+  get "/oauth/keycloak", to: "oauth#new", as: "oauth_login"
+  get "/oauth/:provider/callback", to: "oauth#create"
+  get "/oauth/failure", to: "oauth#failure"
+  get "/", to: "oauth#new"
   # Defines the root path route ("/")
   # root "posts#index"
+  namespace :api, defaults: {format: :json} do
+    namespace :app do
+      resources :info, only: [:index]
+    end
+  end
 end

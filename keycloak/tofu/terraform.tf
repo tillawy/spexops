@@ -535,27 +535,27 @@ resource "keycloak_openid_client" "openid_client" {
 
 
 # create kube openid client
-resource "keycloak_openid_client" "spx-accounts-backend" {
+resource "keycloak_openid_client" "spx-backend" {
   depends_on = [
     keycloak_realm.spexops-realm
   ]
   realm_id = keycloak_realm.spexops-realm.id
-  client_id                    = "spx-accounts-backend"
+  client_id                    = "spx-backend"
   name                         = "SpexOps Accounts Backend"
   description                  = "SpexOps Accounts Backend Description"
   enabled                      = true
-  client_secret                = "spx-accounts-backend-client-secret"
+  client_secret                = "spx-backend-client-secret"
   implicit_flow_enabled        = false
   direct_access_grants_enabled = true
   access_type                  = "CONFIDENTIAL"
   standard_flow_enabled        = true
-  root_url                     = "https://accounts.spexops.com"
+  root_url                     = "https://app.spexops.com"
   valid_redirect_uris          = [
-    "https://accounts.spexops.com/*",
-    "http://accounts.nuc.spexops.com/*",
-    "http://accounts.spexops.local:7100/*",
-    "http://localhost:3000/*",
-    "http://accounts-backend.spexops.local/*"
+    "https://app.spexops.com/*",
+    "http://app.nuc.spexops.com/*",
+    "http://app.spexops.local:7100/*",
+    "http://localhost:4000/*",
+    "http://spx-backend.spexops.local/*"
   ]
 }
 
@@ -564,59 +564,31 @@ resource "keycloak_openid_client" "spx-accounts-backend" {
 
 
 #### Accounts ApiDocs
-resource "keycloak_openid_client" "spx-accounts-apidocs" {
+resource "keycloak_openid_client" "spx-backend-apidocs" {
   depends_on = [
     keycloak_realm.spexops-realm
   ]
   realm_id = keycloak_realm.spexops-realm.id
-  client_id                    = "spx-accounts-apidocs"
-  name                         = "SpexOps Accounts Apidocs"
-  description                  = "SpexOps Accounts Apidocs Description"
+  client_id                    = "spx-backend-apidocs"
+  name                         = "SpexOps Backend Apidocs"
+  description                  = "SpexOps Backend Apidocs Description"
   enabled                      = true
-  client_secret                = "spx-accounts-backend-client-secret"
+  client_secret                = "spx-backend-client-secret"
   implicit_flow_enabled        = true
   direct_access_grants_enabled = true
   access_type                  = "PUBLIC"
   standard_flow_enabled        = true
-  root_url                     = "https://accounts.spexops.com"
+  root_url                     = "https://app.spexops.com"
   valid_redirect_uris          = [
-    "https://accounts.spexops.com/*",
-    "http://accounts.nuc.spexops.com/*",
-    "http://localhost:3000/*",
-    "http://accounts-backend.spexops.local/*"
+    "https://app.spexops.com/*",
+    "http://app.nuc.spexops.com/*",
+    "http://localhost:4000/*"
   ]
 }
 #### Accounts ApiDocs
 
 
 
-#### Accounts WebApp
-resource "keycloak_openid_client" "webapp" {
-  depends_on = [
-    keycloak_realm.spexops-realm
-  ]
-  realm_id = keycloak_realm.spexops-realm.id
-  client_id                    = "spx-webapp"
-  name                         = "SpexOps webapp"
-  description                  = "SpexOps webapp Description"
-  enabled                      = true
-  implicit_flow_enabled        = false
-  direct_access_grants_enabled = true
-  access_type                  = "PUBLIC"
-  standard_flow_enabled        = true
-  root_url                     = "https://app.spexops.com"
-  valid_redirect_uris          = [
-    "https://accounts.spexops.com/*",
-    "http://accounts.nuc.spexops.com/*",
-    "http://localhost:3000/*",
-    "http://accounts-backend.spexops.local/*",
-    "http://app.spexops.local:7000/*"
-  ]
-  web_origins = [
-    "https://app.spexops.com",
-    "http://app.spexops.local:7000"
-  ]
-}
 #### Accounts ApiDocs
 resource "keycloak_openid_client" "spx-admin-client" {
   depends_on = [

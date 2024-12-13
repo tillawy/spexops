@@ -1,0 +1,27 @@
+# keycloak realm > keys > rsa-generated > Public Key
+common: &common
+  client_id: "spx-backend"
+  confidentialPort: 0
+  publicClient: true
+
+development:
+  <<: *common
+  realm: <%= ENV.fetch("KEYCLOAK_REALM") { "spexops" } %>
+  authServerUrl: <%= ENV.fetch("KEYCLOAK_AUTH_SERVER_URL") { "http://localhost:8080" } %>
+  sslRequired: <%= ENV.fetch("KEYCLOAK_SSL_REQUIRED") { "external" } %>
+  resource: <%= ENV.fetch("KEYCLOAK_RESOURCE_BACKEND") { "spx-backend" } %>
+
+test:
+  <<: *common
+  realm: <%= ENV.fetch("KEYCLOAK_REALM") { "SpexOps-Test" } %>
+  authServerUrl: <%= ENV.fetch("KEYCLOAK_AUTH_SERVER_URL") { "http://login.spexops.local" } %>
+  sslRequired: <%= ENV.fetch("KEYCLOAK_SSL_REQUIRED") { "none" } %>
+  resource: <%= ENV.fetch("KEYCLOAK_RESOURCE_BACKEND") { "spx-backend" } %>
+
+production:
+  <<: *common
+  realm: <%= ENV.fetch("KEYCLOAK_REALM") { "spexops" } %>
+  authServerUrl: <%= ENV.fetch("KEYCLOAK_AUTH_SERVER_URL") { "https://login.spexops.com" } %>
+  sslRequired: <%= ENV.fetch("KEYCLOAK_SSL_REQUIRED") { "none" } %>
+  resource: <%= ENV.fetch("KEYCLOAK_RESOURCE_BACKEND") { "spx-backend" } %>
+
