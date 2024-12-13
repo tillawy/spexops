@@ -22,10 +22,15 @@ Rails.application.routes.draw do
   get "/oauth/failure", to: "oauth#failure"
   get "/", to: "oauth#new"
   # Defines the root path route ("/")
-  # root "posts#index"
-  namespace :api, defaults: {format: :json} do
+  root "organizations#index"
+  namespace :api, defaults: { format: :json } do
     namespace :app do
-      resources :info, only: [:index]
+      resources :info, only: [ :index ]
+    end
+  end
+  scope :api, as: :api, defaults: { format: :json } do
+    namespace :accounts do
+      resources "organizations"
     end
   end
 end

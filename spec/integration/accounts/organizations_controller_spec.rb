@@ -3,7 +3,7 @@ require "swagger_helper"
 describe Accounts::OrganizationsController, type: :request do
   include_context "jwt_user"
 
-  path "/api/organizations" do
+  path "/api/accounts/organizations" do
     get "test headers" do
       tags "Organizations"
       description "List Organizations"
