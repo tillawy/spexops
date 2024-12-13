@@ -63,6 +63,7 @@ group :development, :test do
   gem "pg_query"
   gem "rspec-rails", "~> 7"
   gem "rswag-specs"
+  gem "webmock"
   gem "factory_bot_rails"
 end
 
@@ -76,6 +77,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "shoulda-matchers"
+  gem "pundit-matchers"
 end
 
 gem "rls_rails", github: "sbiastoch/rls_rails", branch: "master"
