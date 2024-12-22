@@ -20,10 +20,6 @@ class OauthController < ApplicationController
     redirect_to after_login_path
   end
 
-  def after_login_path
-    raise "after_login_path not implemented"
-  end
-
   def failure
     Rails.logger.warn "bad stuff !"
   end
