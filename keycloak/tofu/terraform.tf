@@ -632,3 +632,31 @@ resource "keycloak_openid_client_service_account_role" "spx-admin-client-service
   role                    = data.keycloak_role.client_role_a.name
 }
 
+
+
+resource "keycloak_user" "tillawy_user_with_initial_password" {
+  depends_on = [
+    keycloak_realm.spexops-realm
+  ]
+  realm_id   = keycloak_realm.spexops-realm.id
+  username   = "tillawy@hotmail.com"
+  enabled    = true
+
+  email      = "tillawy@hotmail.com"
+  first_name = "Mohammed"
+  last_name  = "Tillawy"
+
+  email_verified = true
+
+  attributes = {
+    foo = "bar"
+    multivalue = "value1##value2"
+  }
+
+  initial_password {
+    value     = "password"
+    temporary = false
+  }
+}
+
+
