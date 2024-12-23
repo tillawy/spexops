@@ -6,7 +6,14 @@ module Errors
         rescue_from StandardError do |e|
           Rails.logger.error(e.message)
           Rails.logger.error(e.backtrace)
-          respond(:standard_error, 500, e.message)
+          respond_to do |format|
+            format.html {
+              raise e if Rails.env.development?
+            }
+            format.json {
+              respond(:standard_error, 500, e.message)
+            }
+          end
         end
         rescue_from Pundit::NotAuthorizedError, with: :not_authorized
         rescue_from ActiveRecord::RecordNotUnique, with: :duplicate
