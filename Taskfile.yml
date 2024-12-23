@@ -69,6 +69,22 @@ tasks:
       - task: psql_user_permissions
       - bundle exec rails db:migrate
 
+  psql_primary:
+    cmds:
+      - psql -U $(whoami) spexops_primary_development
+
+  psql_accounts:
+    cmds:
+      - psql -U $(whoami) spexops_accounts_development
+
+  psql_cable:
+    cmds:
+      - psql -U $(whoami) "spexops_cable_development"
+
+  psql_cache:
+    cmds:
+      - psql -U $(whoami) "spexops_cache_development"
+
   psql_user_permissions:
     cmds:
       - |
@@ -94,3 +110,5 @@ tasks:
         setup "spexops" "spexops_suites_development"
         setup "spexops" "spexops_specs_development"
         setup "spexops" "spexops_versions_development"
+
+
