@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2023_06_28_061514) do
+ActiveRecord::Schema[8.0].define(version: 2023_06_28_061514) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
+  enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
-  enable_extension "plpgsql"
 
   create_table "organization_user_memberships", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "user_id", null: false
@@ -33,7 +33,7 @@ ActiveRecord::Schema[7.2].define(version: 2023_06_28_061514) do
 
   create_table "organizations", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "name", null: false
-    t.text "domain"
+    t.citext "domain"
     t.datetime "discarded_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

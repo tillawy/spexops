@@ -14,12 +14,13 @@ development:
     url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
     database: spexops_cable_development
     migrations_paths: db/migrate_cable
-    host: localhost
+    schema_dump: "cable_schema.rb"
   cache:
     <<: *default
     url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
     database: spexops_cache_development
     migrations_paths: db/migrate_cache
+    # schema_dump: true
   queue:
     <<: *default
     url: <%= ENV['DATABASE_QUEUE_RW_URL'] %>
@@ -102,7 +103,7 @@ test:
     url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
     database: spexops_cable_test
     migrations_paths: db/migrate_cable
-    host: localhost
+    schema_dump: "cable_schema.rb"
   cache:
     <<: *default
     url: <%= ENV['DATABASE_CACHE_RW_URL'] %>
@@ -190,7 +191,7 @@ production:
     url: <%= ENV['DATABASE_CABLE_RW_URL'] %>
     database: spexops_cable_production
     migrations_paths: db/migrate_cable
-    host: localhost
+    schema_dump: "cable_schema.rb"
   cache:
     <<: *default
     url: <%= ENV['DATABASE_CACHE_RW_URL'] %>

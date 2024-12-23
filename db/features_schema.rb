@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2022_01_29_051318) do
+ActiveRecord::Schema[8.0].define(version: 2022_01_29_051318) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
+  enable_extension "pg_catalog.plpgsql"
   enable_extension "pg_stat_statements"
   enable_extension "pgcrypto"
-  enable_extension "plpgsql"
 
   create_table "domains", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.text "name", null: false

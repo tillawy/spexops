@@ -2,20 +2,21 @@
 # and seeing results in the browser, you must do so from the web console (running inside the dev process),
 # not a terminal started via bin/rails console! Add "console" to any action or any ERB template view
 # to make the web console appear.
-default: &default
+development:
   adapter: solid_cable
-  message_retention: 1.day
   connects_to:
     database:
       writing: cable
+  polling_interval: 0.1.seconds
+  message_retention: 1.day
 
 test:
   adapter: test
 
-development:
-  <<: *default
-  polling_interval: 0.1.seconds
-
 production:
-  <<: *default
-  polling_interval: 0.2.seconds
+  adapter: solid_cable
+  connects_to:
+    database:
+      writing: cable
+  polling_interval: 0.1.seconds
+  message_retention: 1.day

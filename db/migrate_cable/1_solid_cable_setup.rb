@@ -1,8 +1,4 @@
-class SolidCacheSetup < ActiveRecord::Migration[7.0]
-  puts "hihihihihihi"
-  puts "hihihihihihi"
-  puts "hihihihihihi"
-  puts "hihihihihihi"
+class SolidCableSetup < ActiveRecord::Migration[8.0]
   create_table "solid_cable_messages", force: :cascade do |t|
     t.binary "channel", limit: 1024, null: false
     t.binary "payload", limit: 536870912, null: false
